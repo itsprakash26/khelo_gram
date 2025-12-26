@@ -43,13 +43,37 @@ type Location struct {
 type Club struct {
 	Id          uint      `json:"id" gorm:"primaryKey"`
 	UserId      uint      `json:"user_id" gorm:"not null"`
-	Club_name   string    `json:"club_name" gorm:"not null"`
+	ClubName    string    `json:"club_name" gorm:"not null"`
 	AadharNb    int64     `json:"aadhar_nb" gorm:"not null" binding:"min=12 max=12"`
 	PublishedAt time.Time `json:"published_at" gorm:"not null"`
-	Is_Verified bool      `json:"is_verified" gorm:"not null"`
+	IsVerified  bool      `json:"is_verified" gorm:"not null"`
 	Location    Location  `json:"location" gorm:"foreignKey:OwnerId"`
 	About       string    `json:"about" gorm:"not null"`
 	ProfileImg  string    `json:"profile_img" gorm:"not null"`
+}
+
+type Tournaments struct {
+	Id             uint      `json:"id" gorm:"primaryKey"`
+	OrganizerId    uint      `json:"org_id" gorm:"not null"`
+	CoverImage     string    `json:"cover_img" gorm:"not null"`
+	TournamentName string    `json:"tournament_name" gorm:"not null"`
+	Location       Location  `json:"location" gorm:"not null"`
+	StartedAt      time.Time `json:"started_at" gorm:"not null"`
+	EndedAt        time.Time `json:"ended_at" gorm:"not null"`
+	EntryFees      int64     `json:"entry_fees" gorm:"not null"`
+	TotalTeams     uint      `json:"total_teams" gorm:"not null"`
+	MembersPerTeam uint      `json:"members_per_team" gorm:"not null"`
+	AgeAllow       uint      `json:"age_allowed" gorm:"not null"`
+	FirstPrize     int64     `json:"first_prize" gorm:"not null"`
+	SecondPrize    int64     `json:"second_prize" gorm:"not null"`
+	ThirdPrize     int64     `json:"third_prize" gorm:"not null"`
+	OtherPrize     int64     `json:"other_prize" gorm:"not null"`
+	Rules          string    `json:"rules" gorm:"not null"`
+	CreateAt       time.Time `json:"created_at" gorm:"not null"`
+	UpdatedAt      time.Time `json:"updated_at" gorm:"not null"`
+	DeletedAt      time.Time `json:"deleted_at" gorm:"not null"`
+	IsDeleted      bool      `json:"is_deleted" gorm:"not null"`
+	IsEnded        bool      `json:"is_ended" gorm:"not null"`
 }
 
 type RefreshToken struct {
