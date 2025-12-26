@@ -1,5 +1,4 @@
 alter table clubs
-add COLUMN mob;
+add COLUMN mob INTEGER;
 
 
-// add mob column 
